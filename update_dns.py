@@ -5,12 +5,15 @@ from helpers import get_env_variable
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())
-log.setLevel(logging.DEBUG)
 
 zone_id = get_env_variable(variable='AWS_ZONE_ID')
 domain_name = get_env_variable(variable='AWS_DOMAIN_NAME')
 aws_access_key = get_env_variable(variable='AWS_ACCESS_KEY')
 aws_secret_key = get_env_variable(variable='AWS_SECRET_KEY')
+log_level = get_env_variable(variable="LOG_LEVEL", default_value="INFO")
+log.setLevel(logging.getLevelName(log_level))
+
+
 public_ip_api = 'https://ipconfig.io'
 
 current_ip = requests.get(url=f'{public_ip_api}/json').json().get('ip')
