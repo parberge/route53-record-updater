@@ -3,7 +3,7 @@ import logging
 
 log = logging.getLogger(__name__)
 
-def get_env_variable(variable: str) -> str:
+def get_env_variable(variable: str, default_value=None) -> str:
     """
     Read environment variable
     """
@@ -11,6 +11,10 @@ def get_env_variable(variable: str) -> str:
     try:
         verified_variable = environ[variable]
     except KeyError as error:
+        if default_value:
+            log.debug(f"No value set for {variable}, using default {default_value}")
+            return default_value
+            
         log.debug(f"Caught exception", exc_info=True)
         raise ValueError(f"Unable to read environment variable {variable}")
 
