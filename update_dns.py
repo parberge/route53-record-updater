@@ -31,6 +31,8 @@ client = boto3.client(
 record_object = client.list_resource_record_sets(
     HostedZoneId=zone_id,
     StartRecordName=domain_name,
+    StartRecordType='A',
+    MaxItems="1",
 )
 
 records = record_object.get('ResourceRecordSets')
@@ -38,7 +40,7 @@ records = record_object.get('ResourceRecordSets')
 ip = None
 ttl = None
 for item in records:
-    log.debug(f"Item: {item}")
+    log.debug(f"Record object: {item}")
     if item.get('Type') == 'A' and domain_name in item.get('Name'):
         ttl = item.get('TTL')
         ip_list = item.get('ResourceRecords')
@@ -48,7 +50,7 @@ else:
     raise ValueError(f"Unable to get IP for route 53 domain {domain_name} (zone ID {zone_id})")
     
 if current_ip != ip:
-    log.warning(f"Current IP {current_ip} doesn't match IP {ip}")
+    log.info(f"Current IP {current_ip} doesn't match IP {ip}")
 
     response = client.change_resource_record_sets(
         HostedZoneId=zone_id,
