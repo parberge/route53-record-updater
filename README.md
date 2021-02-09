@@ -9,6 +9,8 @@ keep your domain A record (i.e example.com) updated.
 This tool needs to run from the network that has the public IP.  
 It will use an external service to lookup the source IP and use that to update the record.
 
+It will also use [socket.gethostbyname](https://docs.python.org/3/library/socket.html#socket.gethostbyname) to check current resolved IP.
+
 ## Setup
 The app requires environment variables to work.  
 They are described in `env.example`
