@@ -1,3 +1,6 @@
+![dockerhub](https://img.shields.io/docker/pulls/parberge/route53-record-updater.svg)
+![actions](https://github.com/parberge/route53-record-updater/workflows/Python%20testing/badge.svg)
+
 # A tool to update your public IP in AWS route53
 If the public IP provided by your ISP is dynamic this will help you  
 keep your domain A record (i.e example.com) updated.
