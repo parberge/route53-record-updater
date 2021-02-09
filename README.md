@@ -10,12 +10,16 @@ It will use an external service to lookup the source IP and use that to update t
 The app requires environment variables to work.  
 They are described in `env.example`
 
-## Build
-Build the docker image:  
-`docker build --rm -f "Dockerfile" -t route53-record-updater:latest .`
+Credentials for AWS is required.
+Provide the necessary env variables described here:  
+https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html#using-environment-variables
+
+You can find the route53 zone ID for your domain:
+https://console.aws.amazon.com/route53/v2/hostedzones# and look for the `Hosted zone ID` column.
+
 
 ## Run
 To run it once:  
-`docker run --env-file your-env-file route53-record-updater`
+`docker run --env-file your-env-file -e AWS_ACCESS_KEY_ID=foo -e AWS_SECRET_ACCESS_KEY=bar parberge/route53-record-updater:latest`
 
 Since it doesn't start a running service this has to be scheduled (e.g cron) for continuous updates

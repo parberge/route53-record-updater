@@ -1,11 +1,4 @@
-import os
-from helpers import get_env_variable, get_public_ip
-
-
-def test_get_env_variable():
-    os.environ["FAKE_VARIABLE"] = "fake variable"
-    test = get_env_variable("FAKE_VARIABLE")
-    assert isinstance(test, str)
+from helpers import get_public_ip
 
 
 def test_get_public_ip(requests_mock):

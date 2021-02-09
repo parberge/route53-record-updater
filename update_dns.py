@@ -1,28 +1,25 @@
 import boto3
-import requests
 import logging
-from helpers import get_env_variable, get_public_ip
+from helpers import get_public_ip
+from os import environ
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())
 
-zone_id = get_env_variable(variable="AWS_ZONE_ID")
-domain_name = get_env_variable(variable="AWS_DOMAIN_NAME")
-aws_access_key = get_env_variable(variable="AWS_ACCESS_KEY")
-aws_secret_key = get_env_variable(variable="AWS_SECRET_KEY")
-log_level = get_env_variable(variable="LOG_LEVEL", default_value="INFO")
+zone_id = environ["AWS_ZONE_ID"]
+domain_name = environ["AWS_DOMAIN_NAME"]
+log_level = environ.get("LOG_LEVEL", "INFO")
 log.setLevel(logging.getLevelName(log_level))
 
-
+log.info(f"Fetching current public IP")
 current_ip = get_public_ip()
-
 if not current_ip:
     raise ValueError("Unable to get current IP")
 
+log.info(f"Current IP: {current_ip}")
+
 client = boto3.client(
     "route53",
-    aws_access_key_id=aws_access_key,
-    aws_secret_access_key=aws_secret_key,
 )
 
 record_object = client.list_resource_record_sets(
@@ -70,3 +67,5 @@ if current_ip != ip:
         },
     )
     log.info(response)
+else:
+    log.info(f"Current IP {current_ip} match IP {ip} from record {domain_name}")
