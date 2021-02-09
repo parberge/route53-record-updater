@@ -1,7 +1,7 @@
 import boto3
 import requests
 import logging
-from helpers import get_env_variable
+from helpers import get_env_variable, get_public_ip
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())
@@ -14,10 +14,7 @@ log_level = get_env_variable(variable="LOG_LEVEL", default_value="INFO")
 log.setLevel(logging.getLevelName(log_level))
 
 
-public_ip_api = "https://ipconfig.io"
-
-current_ip = requests.get(url=f"{public_ip_api}/json").json().get("ip")
-log.debug(f"Current IP: {current_ip}")
+current_ip = get_public_ip()
 
 if not current_ip:
     raise ValueError("Unable to get current IP")
