@@ -1,5 +1,6 @@
-![dockerhub](https://img.shields.io/docker/pulls/parberge/route53-record-updater.svg)
-![actions](https://github.com/parberge/route53-record-updater/workflows/Python%20testing/badge.svg)
+[![Docker pulls](https://img.shields.io/docker/pulls/parberge/route53-record-updater.svg)](https://hub.docker.com/r/parberge/route53-record-updater)
+[![actions](https://github.com/parberge/route53-record-updater/workflows/Python%20testing/badge.svg)](https://github.com/parberge/route53-record-updater/actions/workflows/main.yml)
+
 
 # A tool to update your public IP in AWS route53
 If the public IP provided by your ISP is dynamic this will help you  
