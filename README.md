@@ -4,13 +4,14 @@
 
 # A tool to update your public IP in AWS route53
 If the public IP provided by your ISP is dynamic this will help you  
-keep your domain A record (i.e example.com) updated.
+keep your domain A records (i.e example.com) updated.  
+If the domain name configured doesn't match the expected IP it will look for all A records in the configured zone and update records if necessary.
 
 ## Important!
 This tool needs to run from the network that has the public IP.  
 It will use an external service to lookup the source IP and use that to update the record.
 
-It will also use [socket.gethostbyname](https://docs.python.org/3/library/socket.html#socket.gethostbyname) to check current resolved IP.
+It will also use [socket.gethostbyname](https://docs.python.org/3/library/socket.html#socket.gethostbyname) to check if domain and current IP matches.  
 
 ## Setup
 The app requires environment variables to work.  
