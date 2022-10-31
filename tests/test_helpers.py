@@ -36,3 +36,18 @@ def test_get_records_to_update():
 
     assert len(test) == 1
     assert test[0].keys() == {"Action", "ResourceRecordSet"}
+
+
+
+def test_get_faulty_type_to_update():
+    fake_records = [
+        {
+            "Name": "record1",
+            "Type": "NS",
+            "TTL": 300,
+            "ResourceRecords": [{"Value": "ns-1434.awsdns-51.org."}],
+        }
+    ]
+    test = get_records_to_update(records=fake_records, current_public_ip="1.2.3.5")
+
+    assert len(test) == 0

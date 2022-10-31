@@ -39,6 +39,10 @@ def get_records_to_update(records: list, current_public_ip: str) -> list:
 
     changes = []
     for record in records:
+        if record.get("Type") != "A":
+            log.info("Ignoring record %s, wrong type: %s", record.get("Name"), record.get("Type"))
+            continue
+
         current_record_ip = record.get("ResourceRecords")[0].get("Value")
         if current_public_ip == current_record_ip:
             log.info(
