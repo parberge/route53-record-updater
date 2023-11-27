@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  IMAGE_NAME: route53-record-updater
+
 jobs:
   push:
     runs-on: ubuntu-latest
@@ -15,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build image
-        run: docker build . --file Dockerfile --tag route53-record-updater --label "runnumber=${GITHUB_RUN_ID}"
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
