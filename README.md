@@ -1,4 +1,3 @@
-[![Docker pulls](https://img.shields.io/docker/pulls/parberge/route53-record-updater.svg)](https://hub.docker.com/r/parberge/route53-record-updater)
 [![actions](https://github.com/parberge/route53-record-updater/workflows/Python%20testing/badge.svg)](https://github.com/parberge/route53-record-updater/actions/workflows/main.yml)
 
 
@@ -27,6 +26,6 @@ https://console.aws.amazon.com/route53/v2/hostedzones# and look for the `Hosted 
 
 ## Run
 To run it once:  
-`docker run --env-file your-env-file -e AWS_ACCESS_KEY_ID=foo -e AWS_SECRET_ACCESS_KEY=bar parberge/route53-record-updater:latest`
+`docker run --env-file your-env-file -e AWS_ACCESS_KEY_ID=foo -e AWS_SECRET_ACCESS_KEY=bar ghcr.io/parberge/route53-record-updater:latest`
 
 Since it doesn't start a running service this has to be scheduled (e.g cron) for continuous updates
