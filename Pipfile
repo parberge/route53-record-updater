@@ -12,6 +12,7 @@ requests-mock = "*"
 [packages]
 boto3 = "*"
 requests = "*"
+certifi = "*"
 
 [requires]
 python_version = "3.12"
