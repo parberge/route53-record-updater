@@ -8,16 +8,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-      - name: Set up Python 3.12
+      - name: Set up Python 3.14
         uses: actions/setup-python@v6
         with:
-          python-version: "3.12"
-
-      - name: Install pipenv
-        run: pip install pipenv
+          python-version: "3.14"
 
       - name: Install dependencies
-        run: pipenv install --dev
+        run: pip install --no-cache-dir -r dev-requirements.txt
 
       - name: Test with pytest
-        run: pipenv run pytest -v
+        run: pytest -v
