@@ -23,6 +23,11 @@ https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html
 You can find the route53 zone ID for your domain:
 https://console.aws.amazon.com/route53/v2/hostedzones# and look for the `Hosted zone ID` column.
 
+## Development
+Install runtime dependencies and then development dependencies:
+
+`pip install -r requirements.txt -r dev-requirements.txt`
+
 
 ## Run
 To run it once:  
