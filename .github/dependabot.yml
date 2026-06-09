@@ -10,12 +10,12 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      patch:
+      major:
         applies-to: version-updates
         patterns:
         - "*"
         update-types:
-        - "patch"
+        - "version-update:semver-major"
 
 
   - package-ecosystem: "github-actions"
